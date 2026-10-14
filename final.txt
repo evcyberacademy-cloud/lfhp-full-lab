@@ -1,0 +1,391 @@
+====================================================================================================
+           EV CYBER ACADEMY - LFHP (LEARN THE FUNDAMENTALS OF HACKING PROGRAM)
+                     COMPREHENSIVE LABS PLATFORM FEATURE DOCUMENTATION
+====================================================================================================
+
+PROJECT: EV Cyber Academy Virtual Linux & Cyber Security Labs
+VERSION: 2.0 (Full Release)
+FILE: final.txt
+
+====================================================================================================
+TABLE OF CONTENTS
+====================================================================================================
+1. EXECUTIVE PLATFORM SUMMARY
+2. USER REQUIREMENTS & IMPLEMENTATION CHRONOLOGY
+3. CORE SYSTEM MODULES & DEEP ARCHITECTURE:
+   - 3.1. ACCESS GATE & BIOMETRIC AUTHENTICATION SYSTEM
+   - 3.2. VOICE SYNTHESIS & AUDIO SOUND ENGINE
+   - 3.3. GRAPHICAL DESKTOP OS & MULTI-WINDOW MANAGER
+   - 3.4. VIRTUAL POSIX FILE SYSTEM (VFS) & STORAGE ENGINE
+   - 3.5. LFHP INTERACTIVE LAB CENTER & VALIDATION ENGINE
+   - 3.6. AI CYBER MENTOR BOT (100+ CURATED Q&A & VOICE)
+   - 3.7. VIRTUAL BASH SCRIPTING ENGINE & INTERACTIVE I/O
+   - 3.8. LINUX TERMINAL COMMAND SUITE (50+ UTILITIES)
+   - 3.9. GNU NANO 7.2 TERMINAL TEXT EDITOR
+   - 3.10. SIMULATED CYBER NETWORK & DNS/HTTP/PORT ENGINES
+   - 3.11. CATASTROPHIC OS CRASH & KERNEL PANIC SIMULATOR
+   - 3.12. LAB STATE EXPORT & IMPORT ENGINE (.JSON)
+   - 3.13. OFFICIAL BRAND & LOGO ASSET INTEGRATION
+4. FILE STRUCTURE & ARTIFACT OVERVIEW
+5. TESTING & VERIFICATION SUMMARY
+
+====================================================================================================
+1. EXECUTIVE PLATFORM SUMMARY
+====================================================================================================
+The EV Cyber Academy LFHP Labs platform is a zero-latency, full-featured web-based virtual Linux 
+operating system and cyber security simulation environment designed for students of the "Learn the 
+Fundamentals of Hacking Program" (LFHP). The platform runs entirely in the modern web browser while 
+faithfully simulating an authentic Linux environment (bash scripting, interactive standard input, 
+network protocols, DNS servers, target web servers, terminal text editors, and hands-on hacking labs).
+
+====================================================================================================
+2. USER REQUIREMENTS & IMPLEMENTATION CHRONOLOGY
+====================================================================================================
+
+[REQ-01] PRO UI/UX WITH VOICE WELCOME:
+- Requirement: UI/UX must look extremely professional, modern, cyber-styled, and speak:
+  "Welcome <student_name> to LFHP labs" upon successful student access.
+- Implementation: Built futuristic cyber glassmorphic UI, access gate with cyber grid animations, 
+  and automated Web Speech API synthesis greeting students with customized name pronunciations.
+
+[REQ-02] AI MENTOR CHATBOT WITH 100+ QUESTIONS & VOICE:
+- Requirement: Frontend AI Chatbot containing 100+ questions & answers covering LFHP labs, 
+  Linux commands, cyber security, and networking. Must include suggestion buttons for next 
+  questions, voice synthesis capability, search, and category filtering.
+- Implementation: Created AIBotApp with 105+ high-quality questions & answers categorized across
+  LFHP Labs, Linux Essentials, Cyber & Pentesting, and Network Analysis with dynamic suggestion 
+  pills, search bar, text-to-speech speaker button, and voice synthesizer.
+
+[REQ-03] PAGE RENDERING & CONSOLE ERROR FIXES:
+- Requirement: Resolve 404 static asset loading errors and ensure clean, fast, local dev execution.
+- Implementation: Cleaned Next.js cache artifacts, configured clean production static rendering, 
+  and verified local server execution on port 3000.
+
+[REQ-04] CATASTROPHIC SYSTEM CRASH SIMULATION ("rm -rf /*"):
+- Requirement: When a student executes destructive commands like `sudo rm -rf /*` or 
+  `rm -rf / --no-preserve-root`, the OS must simulate complete kernel panic/destruction with a 5-minute 
+  recovery countdown screen before auto-restoring.
+- Implementation: Built OsCrashOverlay with glitch/CRT screen distortions, kernel panic telemetry logs, 
+  5-minute recovery timer, emergency reboot trigger, and automatic VFS reconstruction.
+
+[REQ-05] STATE EXPORT & IMPORT ENGINE:
+- Requirement: Export lab settings/progress as a JSON file and import JSON configurations seamlessly.
+- Implementation: Built complete export/import subsystem in SettingsApp and VFS Storage Manager 
+  that serializes VFS, lab completion, student profile, and desktop settings with timestamped filenames.
+
+[REQ-06] OFFICIAL LOGOS INTEGRATION:
+- Requirement: Embed EV Cyber Academy company logo (https://i.ibb.co/KxMky9p4/logo.jpg) and 
+  LFHP Course logo (https://i.ibb.co/pjT3Bkdn/file-0000000037308230a881814ec2d26a72.png) across all 
+  prominent UI locations in medium, high-fidelity format.
+- Implementation: Downloaded and verified both logos (`public/company-logo.jpg` and `public/lfhp-logo.png`). 
+  Embedded across AccessGate, Desktop TopBar, Wallpapers, Lab Center, Dock, App Launcher, AI Bot, 
+  Window Titlebars, and Settings profile cards.
+
+[REQ-07] FULL BASH SCRIPTING ENGINE & INTERACTIVE TERMINAL I/O:
+- Requirement: Full bash scripting support on the terminal with script execution (`bash`, `sh`, `./`), 
+  builtins (`echo`, `ip`, `ifconfig`, `pwd`, etc.), input/output handling, and interactive `read` support.
+- Implementation: Built comprehensive `BashScriptEngine`, compound command parser, arithmetic 
+  evaluators, interactive standard input pause/resume handling, silent password mode, loop blocks, 
+  conditional branches, and command substitutions.
+
+====================================================================================================
+3. CORE SYSTEM MODULES & DEEP ARCHITECTURE
+====================================================================================================
+
+----------------------------------------------------------------------------------------------------
+3.1. ACCESS GATE & BIOMETRIC AUTHENTICATION SYSTEM
+----------------------------------------------------------------------------------------------------
+- Location: `src/components/auth/AccessGate.tsx` & `src/context/AuthContext.tsx`
+- Features:
+  * Cyberpunk biometric authentication gate with dual EV Cyber Academy & LFHP Course logos.
+  * Student enrollment fields: Full Name, Student ID / Call-sign, Target Role (Pentester, Analyst).
+  * Quick Demo Mode toggle for instantaneous single-click entry.
+  * Local session persistence via localStorage with logout and profile switching capabilities.
+  * Security clearance level tags (Student, Analyst, Root Operator).
+
+----------------------------------------------------------------------------------------------------
+3.2. VOICE SYNTHESIS & AUDIO SOUND ENGINE
+----------------------------------------------------------------------------------------------------
+- Location: `src/lib/sounds/sound-effects.ts`
+- Features:
+  * Web Speech Synthesis API voice synthesizer with natural speech rate and pitch control.
+  * Automated welcome greeting: "Welcome <student_name> to LFHP labs. Virtual Linux Environment ready."
+  * Web Audio API synthesized procedural sound effects (zero external audio lag):
+    - Keypress click sounds for terminal input.
+    - Lab task success chime & level up audio cues.
+    - Error and warning alerts.
+    - Terminal window open/close sounds.
+  * Global sound toggle (Mute/Unmute) with volume control in Settings.
+
+----------------------------------------------------------------------------------------------------
+3.3. GRAPHICAL DESKTOP OS & MULTI-WINDOW MANAGER
+----------------------------------------------------------------------------------------------------
+- Location: `src/components/desktop/Desktop.tsx`, `TopBar.tsx`, `Dock.tsx`, `Window.tsx`, `AppLauncher.tsx`
+- Features:
+  * Full X11/Wayland-inspired desktop environment with custom cyber wallpapers.
+  * Window management: Draggable by header, resizable from corners/edges, minimizable to dock, 
+    maximizable to full-screen, focus elevation on click.
+  * Top Navigation Bar with real-time digital clock, system resource monitors (CPU, RAM, Net speed), 
+    audio controls, quick notification toasts, and user profile badge.
+  * Quick-launch bottom Dock with glowing active application indicators and tooltips.
+  * Fullscreen App Launcher grid with application categorization and search.
+  * Responsive Touch Ribbons for mobile and tablet browsers (Tab, Up, Down, Pipe, Redirect, Clear keys).
+
+----------------------------------------------------------------------------------------------------
+3.4. VIRTUAL POSIX FILE SYSTEM (VFS) & STORAGE ENGINE
+----------------------------------------------------------------------------------------------------
+- Location: `src/lib/vfs/vfs-engine.ts`, `vfs-storage.ts`, `vfs-init.ts`, `vfs-permissions.ts`
+- Features:
+  * True Hierarchical Tree POSIX File System with Root (`/`), `/home/student`, `/etc`, `/var`, `/usr`, `/bin`, `/tmp`, `/proc`, `/dev`.
+  * POSIX Permissions: User/Group/Other read, write, execute (`rwxr-xr-x`, `chmod 755`, `chmod +x`, `chown`).
+  * User & Group simulation: `student` (default unprivileged) and `root` (UID 0 privileged).
+  * Dynamic virtual nodes: `/proc/cpuinfo`, `/proc/meminfo`, `/proc/version`, `/proc/uptime`.
+  * Simulated standard devices: `/dev/null`, `/dev/zero`, `/dev/urandom`.
+  * Persistent storage with IndexedDB backed by automatic localStorage fallback.
+  * Factory reset and state synchronization engine.
+
+----------------------------------------------------------------------------------------------------
+3.5. LFHP INTERACTIVE LAB CENTER & VALIDATION ENGINE
+----------------------------------------------------------------------------------------------------
+- Location: `src/components/apps/LabCenterApp.tsx` & `src/lib/labs/curriculum.ts`
+- Features:
+  * 12 Comprehensive Hands-On Lab Modules:
+    1. Linux Terminal Fundamentals (Navigation, `pwd`, `ls -la`, directory creation).
+    2. File Management & Viewing (`cat`, `head`, `tail`, `touch`, `cp`, `mv`, `rm`).
+    3. File Permissions & Security (`chmod 700`, `chmod +x`, `chown`, secure keys).
+    4. Text Processing & Analysis (`grep`, `awk`, `sed`, `cut`, `sort`, `uniq`, `wc`).
+    5. Process & System Monitoring (`ps aux`, `top`, `kill`, `uname -a`, `df -h`).
+    6. Network Diagnostics & Recon (`ip a`, `ifconfig`, `ping`, `traceroute`, `ss`).
+    7. DNS Reconnaissance & Resolution (`nslookup`, `dig`, `host`).
+    8. Web Requests & API Enumeration (`curl -I`, `curl -X POST`, `wget`).
+    9. Port Scanning & Recon (`nmap -sV`, `nmap -p 22,80,443`).
+    10. User & Privilege Management (`whoami`, `id`, `sudo`, `/etc/passwd`).
+    11. Bash Shell Scripting & Automation (Script files, loops, variables, interactive `read`).
+    12. Network Sniffing & Traffic Analysis (`netstat -tuln`, connection auditing).
+  * Real-Time Validation: Terminal commands and outputs automatically validate task criteria.
+  * Multi-Level Hints: Progressive hints for struggling students.
+  * Canvas Confetti Celebration on lab module completion.
+  * Complete progress tracker with module progress bars and completion percentages.
+
+----------------------------------------------------------------------------------------------------
+3.6. AI CYBER MENTOR BOT (149+ CURATED Q&A & VOICE)
+----------------------------------------------------------------------------------------------------
+- Location: `src/components/apps/AIBotApp.tsx` & `src/lib/ai-bot/frontend-qa-database.ts`
+- Features:
+  * Over 149 comprehensive Questions & Answers covering:
+    - LFHP Lab Guidance & Step-by-Step walkthroughs.
+    - Linux Commands, flags, syntax, and troubleshooting.
+    - Cyber Security, Penetration Testing, OWASP Top 10, Privilege Escalation.
+    - Networking Protocols (TCP/IP, UDP, DNS, HTTP/S, Routing, Subnets).
+  * Text-to-Speech (TTS) voice reading for every bot answer.
+  * Interactive Smart Suggestions: "Next Question" buttons dynamically recommended on each chat turn.
+  * Category Filters & Instant Live Search.
+  * Markdown-styled code block rendering with copy buttons.
+
+----------------------------------------------------------------------------------------------------
+3.7. VIRTUAL BASH SCRIPTING ENGINE & INTERACTIVE I/O
+----------------------------------------------------------------------------------------------------
+- Location: `src/lib/terminal/bash-script-engine.ts`, `src/lib/terminal/executor.ts`, `src/lib/terminal/parser.ts`
+- Features:
+  * Script Execution Modes:
+    - `bash /path/to/script.sh`
+    - `sh script.sh`
+    - `./script.sh` (with executable permissions)
+    - `source script.sh` / `. script.sh`
+  * Interactive Standard Input (`read`):
+    - `read -p "Enter Target IP: " TARGET_IP` -> Displays prompt, pauses script execution, accepts 
+      user input from terminal, sets variable, and resumes.
+    - `read -s -p "Password: " PASS` -> Silent password mode masking student input.
+    - `read VAR1 VAR2 VAR3` -> Multi-token assignment.
+    - `Ctrl+C` interrupt handling to abort active script read prompts.
+  * Control Structures:
+    - Conditional Blocks: `if [ condition ]; then ... elif [ condition ]; then ... else ... fi`
+    - Loop Blocks: `for var in item1 item2 item3; do ... done`
+    - While Loops: `while [ condition ]; do ... done`
+  * Arithmetic Engine:
+    - Arithmetic Expansion: `$(( A + B * C ))` with operator precedence.
+    - Arithmetic Command: `(( COUNT = COUNT + 1 ))`.
+  * Variable Expansions:
+    - Basic: `$VAR`, `${VAR}`
+    - Defaults: `${VAR:-default_value}`
+    - Special Parameters: `$?` (exit code), `$#` (arg count), `$@` (all args), `$*`, `$0` (script path), `$1`..`$9` (positional args).
+  * Command Substitution:
+    - Subshell execution: `$(command)` and `` `command` ``.
+  * Compound Command Operators:
+    - Semicolon sequential execution: `cmd1 ; cmd2 ; cmd3`
+    - Logical AND conditional: `cmd1 && cmd2`
+    - Logical OR conditional: `cmd1 || cmd2`
+
+----------------------------------------------------------------------------------------------------
+3.8. LINUX TERMINAL COMMAND SUITE (50+ UTILITIES)
+----------------------------------------------------------------------------------------------------
+- Location: `src/lib/terminal/commands/` (`file-ops.ts`, `text-tools.ts`, `sys-admin.ts`, `network-sim.ts`)
+- Implemented Commands:
+  * File Operations:
+    `ls` (with `-l`, `-a`, `-la`, `-lh`, `-R`, colors), `cd`, `pwd`, `mkdir` (`-p`), `rmdir`, `touch`, 
+    `cp` (`-r`), `mv`, `rm` (`-r`, `-f`, `-rf`), `chmod` (octal & symbolic), `chown`, `stat`, `file`, 
+    `which`, `whereis`, `find`.
+  * Text Inspection & Manipulation:
+    `cat` (`-n`), `head` (`-n`), `tail` (`-n`), `grep` (`-i`, `-v`, `-n`, `-c`, `-E`, regex), 
+    `awk` (`'{print $1}'`, formatting), `sed` (`'s/old/new/g'`), `cut` (`-d`, `-f`), `sort` (`-r`, `-n`), 
+    `uniq` (`-c`, `-d`), `wc` (`-l`, `-w`, `-c`), `less`, `more`, `echo` (`-e`, `-n`), `printf`.
+  * System Administration & Monitoring:
+    `ps` (`aux`, `-ef`), `top` (live interactive task table), `kill` (`-9`), `uname` (`-a`, `-r`), 
+    `hostname`, `whoami`, `id`, `env`, `export`, `unset`, `history`, `clear`, `date`, `uptime`, 
+    `df` (`-h`), `free` (`-m`), `sudo`, `su`, `man` (built-in manual pages for all commands).
+  * Cyber Networking & Diagnostics:
+    `ip` (`ip a`, `ip addr`, `ip route`, `ip link`), `ifconfig`, `ping` (`-c`, TTL, latency), 
+    `traceroute` (multi-hop simulation), `nslookup` (DNS query simulation), `dig` (`+short`, MX, TXT), 
+    `host`, `curl` (`-I`, `-X`, `-d`, headers, status codes), `wget` (download to VFS), 
+    `nmap` (`-sV`, `-p`, `-A`, banner grabbing), `ss` (`-tuln`), `netstat` (`-tuln`), `arp` (`-a`).
+
+----------------------------------------------------------------------------------------------------
+3.9. GNU NANO 7.2 TERMINAL TEXT EDITOR
+----------------------------------------------------------------------------------------------------
+- Location: `src/components/apps/TerminalApp.tsx` (Embedded Nano Subsystem)
+- Features:
+  * Launched directly from terminal: `nano filename.txt` or `nano /path/to/script.sh`.
+  * Authentic GNU nano header (Version, File Path, [Modified] indicator).
+  * Real-time text buffer editing.
+  * GNU nano keyboard shortcuts:
+    - `Ctrl + O`: WriteOut (Saves content directly to VFS).
+    - `Ctrl + X`: Exit nano and return to active bash shell.
+  * Status message bar showing byte count and save confirmation.
+
+----------------------------------------------------------------------------------------------------
+3.10. SIMULATED CYBER NETWORK & DNS/HTTP/PORT ENGINES
+----------------------------------------------------------------------------------------------------
+- Location: `src/lib/network/` (`simulated-hosts.ts`, `dns-engine.ts`, `http-simulator.ts`, `port-scanner.ts`)
+- Features:
+  * Authentic simulated hosts:
+    - `10.10.10.100` (Local Student Machine `evcyber`)
+    - `10.10.10.1` (Default Gateway / Router)
+    - `10.10.10.10` (Internal DNS Server `ns1.evcyber.local`)
+    - `10.10.10.50` (Target Web Server `web01.vulnlab.local`)
+    - `10.10.10.75` (Database Server `db01.vulnlab.local`)
+    - `10.10.10.200` (Simulated Vulnerable Target `target.lfhp.internal`)
+    - `8.8.8.8` / `1.1.1.1` (Public DNS Resolvers)
+  * DNS Resolution Engine supporting A, AAAA, CNAME, MX, and TXT record lookups.
+  * HTTP Simulator supporting GET, POST, HEAD with HTTP 200, 301, 403, 404 responses, custom headers, 
+    and authentic HTML payloads.
+  * Port Scanner Engine simulating open/filtered/closed states for ports 21 (FTP), 22 (SSH), 53 (DNS), 
+    80 (HTTP), 443 (HTTPS), 3306 (MySQL), 8080 (HTTP-Proxy).
+
+----------------------------------------------------------------------------------------------------
+3.11. CATASTROPHIC OS CRASH & KERNEL PANIC SIMULATOR
+----------------------------------------------------------------------------------------------------
+- Location: `src/components/desktop/OsCrashOverlay.tsx` & `src/lib/terminal/executor.ts`
+- Features:
+  * Triggers on destructive commands: `sudo rm -rf /*`, `rm -rf /`, `rm -rf /* --no-preserve-root`.
+  * Visual screen destruction: CRT monitor distortion, scanlines, matrix glitch effects, red strobe alert.
+  * Authentic Linux Kernel Panic crash dump output and memory address fault dump.
+  * 5-Minute Auto-Recovery Countdown timer (300 seconds).
+  * "Emergency Reboot & Restore OS" manual recovery button.
+  * Automatic reinitialization of VFS file system on recovery.
+
+----------------------------------------------------------------------------------------------------
+3.12. LAB STATE EXPORT & IMPORT ENGINE (.JSON)
+----------------------------------------------------------------------------------------------------
+- Location: `src/components/apps/SettingsApp.tsx` & `src/lib/vfs/vfs-storage.ts`
+- Features:
+  * Export: Generates a standalone `.json` backup file containing full VFS node tree, completed lab 
+    tasks, student profile metadata, and customized desktop settings with timestamped filenames 
+    (e.g., `lfhp-lab-backup-student-2026-09-10.json`).
+  * Import: Validates, parses, and restores all files, directories, lab progress milestones, and user 
+    configurations with zero data corruption.
+
+----------------------------------------------------------------------------------------------------
+3.13. OFFICIAL BRAND & LOGO ASSET INTEGRATION
+----------------------------------------------------------------------------------------------------
+- Assets:
+  * EV Cyber Academy Company Logo (`public/company-logo.jpg` & `public/logo.png`, 105 KB)
+  * LFHP Course Logo (`public/lfhp-logo.png`, 469 KB High-Resolution transparent PNG)
+- Integrations:
+  1. Access Gate (Login Screen): Dual badge with glowing cyber border.
+  2. Desktop TopBar: EV Cyber Academy company emblem.
+  3. Desktop Wallpaper: High-resolution LFHP Course central watermark emblem.
+  4. Welcome Voice Toast: Company emblem on audio announcement toast.
+  5. Lab Center App: Official LFHP Course emblem in the top curriculum banner.
+  6. Desktop Icons & Dock: LFHP Course logo on application shortcuts.
+  7. App Launcher: LFHP Course logo on launcher cards.
+  8. Window Titlebars: Course emblem on window headers.
+  9. AI Mentor Chatbot: Course emblem on AI Bot header.
+  10. Settings App: Academy emblem in navigation sidebar and dual logos on student profile card.
+
+====================================================================================================
+4. FILE STRUCTURE & ARTIFACT OVERVIEW
+====================================================================================================
+
+src/
+├── app/
+│   ├── layout.tsx                    # Root HTML5 layout with dark cyber theme & metadata
+│   ├── page.tsx                      # Main OS orchestrator & Access Gate router
+│   └── globals.css                   # Global styling, cyber glow, scrollbars, CRT scanlines
+├── components/
+│   ├── auth/
+│   │   └── AccessGate.tsx            # Student authentication & enrollment portal
+│   ├── desktop/
+│   │   ├── Desktop.tsx               # Graphical Desktop & Wallpaper management
+│   │   ├── TopBar.tsx                # Desktop top menu, clocks, resource monitors
+│   │   ├── Dock.tsx                  # Bottom application dock
+│   │   ├── Window.tsx                # Multi-window draggable/resizable window container
+│   │   ├── AppLauncher.tsx           # Fullscreen application launcher grid
+│   │   ├── DesktopIcon.tsx           # Desktop shortcut icons
+│   │   └── OsCrashOverlay.tsx        # Destructive crash & kernel panic recovery modal
+│   └── apps/
+│       ├── TerminalApp.tsx           # Linux Terminal, Bash I/O, GNU Nano editor
+│       ├── LabCenterApp.tsx          # 12 Hands-on LFHP Interactive Labs & Validation
+│       ├── AIBotApp.tsx              # AI Mentor Bot (100+ Q&A, Voice Synthesis, Suggestions)
+│       ├── FileManagerApp.tsx        # GUI File Explorer & VFS Browser
+│       ├── SettingsApp.tsx           # Theme switcher, Audio, Export/Import JSON backup
+│       ├── TextEditorApp.tsx         # GUI Cyber Text Editor
+│       └── BrowserApp.tsx            # Simulated In-OS Web Browser & Web Recon tool
+├── context/
+│   ├── AuthContext.tsx               # Student authentication state & session storage
+│   ├── DesktopContext.tsx            # Window manager state, themes, active app focus
+│   ├── LabContext.tsx                # Lab curriculum progress & real-time task validator
+│   └── VFSContext.tsx                # VFS provider, command execution & script resumption
+├── lib/
+│   ├── ai-bot/
+│   │   └── frontend-qa-database.ts   # 149+ Curated Cyber, Linux, LFHP & Network Q&As
+│   ├── labs/
+│   │   └── curriculum.ts             # 12 Full LFHP Interactive Lab Modules & Tasks
+│   ├── terminal/
+│   │   ├── bash-script-engine.ts     # Bash interpreter, conditions, arithmetic, loops
+│   │   ├── executor.ts               # Command execution, compound pipelines, subshells
+│   │   ├── parser.ts                 # Shell tokenizer, quote extraction, redirects
+│   │   ├── man-pages.ts              # Linux man pages for 50+ builtins
+│   │   └── commands/
+│   │       ├── file-ops.ts           # ls, cd, pwd, mkdir, rm, cp, mv, chmod, chown
+│   │       ├── text-tools.ts         # grep, awk, sed, cut, sort, uniq, wc, cat, head, tail
+│   │       ├── sys-admin.ts          # ps, top, kill, uname, whoami, id, env, sudo, clear
+│   │       └── network-sim.ts        # ip, ifconfig, ping, traceroute, nmap, curl, wget, dig
+│   ├── vfs/
+│   │   ├── vfs-engine.ts             # POSIX Virtual File System engine
+│   │   ├── vfs-init.ts               # Default filesystem template & initial nodes
+│   │   ├── vfs-permissions.ts        # Linux permissions & octal calculator
+│   │   └── vfs-storage.ts            # IndexedDB & localStorage persistence layer
+│   ├── network/
+│   │   ├── simulated-hosts.ts        # Virtual target machines, IP addresses & ports
+│   │   ├── dns-engine.ts             # DNS server simulator (A, CNAME, MX, TXT)
+│   │   ├── http-simulator.ts         # Simulated HTTP server & response generator
+│   │   └── port-scanner.ts           # TCP port scanning simulation engine
+│   └── sounds/
+│       └── sound-effects.ts          # Web Speech synthesis & Web Audio API procedural sound
+└── types/
+    ├── desktop.ts                    # Desktop window, theme & configuration interfaces
+    ├── lab.ts                        # Lab module, task, hint & validation interfaces
+    ├── terminal.ts                   # Shell command result, tokens & interactive prompt state
+    └── vfs.ts                        # File system node, stat & permission interfaces
+
+====================================================================================================
+5. TESTING & VERIFICATION SUMMARY
+====================================================================================================
+- TypeScript Compilation: `npx tsc --noEmit` -> 0 Errors (100% Type Safe).
+- Virtual Bash Test Suite: `scratch/test-bash.ts` -> 100% Passed.
+- Production Optimization: `npm run build` -> Next.js Production Build Succeeded (Exit code 0).
+- Local Server Runtime: Active & Operational on `http://localhost:3000`.
+
+====================================================================================================
+                              END OF FINAL PLATFORM DOCUMENTATION
+====================================================================================================

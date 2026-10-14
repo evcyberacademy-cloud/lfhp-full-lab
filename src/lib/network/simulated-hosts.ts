@@ -1,0 +1,93 @@
+import { SimulatedHost, DnsRecord } from '@/types/network';
+
+export const SIMULATED_HOSTS: Record<string, SimulatedHost> = {
+  '10.10.10.1': {
+    ip: '10.10.10.1',
+    hostname: 'gateway.evcyber.local',
+    mac: '00:1a:2b:3c:4d:01',
+    role: 'gateway',
+    os: 'Linux (EV RouterOS 7.2)',
+    description: 'LFHP Subnet Default Gateway & Firewall',
+    latencyMs: 1.2,
+    isReachable: true,
+    ports: [
+      { port: 22, protocol: 'tcp', state: 'open', service: 'ssh', version: 'OpenSSH 8.9p1 Ubuntu', banner: 'SSH-2.0-OpenSSH_8.9p1' },
+      { port: 53, protocol: 'udp', state: 'open', service: 'domain', version: 'dnsmasq 2.86' },
+      { port: 80, protocol: 'tcp', state: 'open', service: 'http', version: 'RouterOS WebUI 7.2' },
+    ],
+  },
+  '10.10.10.10': {
+    ip: '10.10.10.10',
+    hostname: 'bank.local',
+    mac: '00:1a:2b:3c:4d:10',
+    role: 'web-server',
+    os: 'Linux 5.15 (Ubuntu 22.04 LTS)',
+    description: 'EV Cyber Virtual Bank & Lab Web Target',
+    latencyMs: 2.4,
+    isReachable: true,
+    ports: [
+      { port: 22, protocol: 'tcp', state: 'open', service: 'ssh', version: 'OpenSSH 8.9p1' },
+      { port: 80, protocol: 'tcp', state: 'open', service: 'http', version: 'Apache/2.4.52 (Ubuntu)', banner: 'Apache/2.4.52 (Ubuntu)' },
+      { port: 443, protocol: 'tcp', state: 'open', service: 'ssl/http', version: 'Apache/2.4.52 (OpenSSL 3.0.2)' },
+      { port: 8080, protocol: 'tcp', state: 'open', service: 'http-proxy', version: 'Node.js Express / REST API' },
+    ],
+  },
+  '10.10.10.20': {
+    ip: '10.10.10.20',
+    hostname: 'database.evcyber.internal',
+    mac: '00:1a:2b:3c:4d:20',
+    role: 'database',
+    os: 'Linux 5.15 (Debian 12)',
+    description: 'Internal Database & Analytics Server',
+    latencyMs: 3.1,
+    isReachable: true,
+    ports: [
+      { port: 22, protocol: 'tcp', state: 'open', service: 'ssh', version: 'OpenSSH 9.2p1 Debian' },
+      { port: 3306, protocol: 'tcp', state: 'open', service: 'mysql', version: 'MySQL 8.0.35 Community Server' },
+      { port: 6379, protocol: 'tcp', state: 'open', service: 'redis', version: 'Redis server v=7.0.12' },
+    ],
+  },
+  '10.10.10.53': {
+    ip: '10.10.10.53',
+    hostname: 'dns.evcyber.local',
+    mac: '00:1a:2b:3c:4d:53',
+    role: 'dns-server',
+    os: 'Linux 6.1 (Alpine Linux)',
+    description: 'Authoritative DNS Server for LFHP Labs',
+    latencyMs: 1.8,
+    isReachable: true,
+    ports: [
+      { port: 22, protocol: 'tcp', state: 'open', service: 'ssh', version: 'Dropbear sshd 2022.83' },
+      { port: 53, protocol: 'udp', state: 'open', service: 'domain', version: 'BIND 9.18.18-1-Debian' },
+      { port: 53, protocol: 'tcp', state: 'open', service: 'domain', version: 'BIND 9.18.18-1-Debian' },
+    ],
+  },
+  '10.10.10.100': {
+    ip: '10.10.10.100',
+    hostname: 'evcyber',
+    mac: '00:1a:2b:3c:4d:99',
+    role: 'student-workstation',
+    os: 'EV Cyber Linux 2026.1 (LFHP)',
+    description: 'Student Interactive Workstation',
+    latencyMs: 0.1,
+    isReachable: true,
+    ports: [
+      { port: 22, protocol: 'tcp', state: 'open', service: 'ssh', version: 'OpenSSH 8.9p1' },
+      { port: 80, protocol: 'tcp', state: 'open', service: 'http', version: 'nginx/1.18.0' },
+    ],
+  },
+};
+
+export const SIMULATED_DNS_RECORDS: DnsRecord[] = [
+  { domain: 'bank.local', type: 'A', value: '10.10.10.10', ttl: 300 },
+  { domain: 'target-web', type: 'A', value: '10.10.10.10', ttl: 300 },
+  { domain: 'database.evcyber.internal', type: 'A', value: '10.10.10.20', ttl: 300 },
+  { domain: 'dns.evcyber.local', type: 'A', value: '10.10.10.53', ttl: 300 },
+  { domain: 'gateway.evcyber.local', type: 'A', value: '10.10.10.1', ttl: 300 },
+  { domain: 'evcyber.academy', type: 'A', value: '104.21.48.92', ttl: 3600 },
+  { domain: 'evcyber.academy', type: 'TXT', value: 'v=spf1 include:_spf.evcyber.academy ~all', ttl: 3600 },
+  { domain: 'evcyber.academy', type: 'MX', value: '10 mail.evcyber.academy', ttl: 3600 },
+  { domain: 'evcyber.academy', type: 'NS', value: 'ns1.evcyber.academy', ttl: 86400 },
+  { domain: 'shop.evcyber.internal', type: 'A', value: '10.10.10.10', ttl: 300 },
+  { domain: 'localhost', type: 'A', value: '127.0.0.1', ttl: 86400 },
+];
